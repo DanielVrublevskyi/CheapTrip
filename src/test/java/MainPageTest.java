@@ -1,23 +1,22 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-public class MainPageTest {
+public class MainPageTest extends TestBase{
 
-
-    WebDriver wd;
-
-    @BeforeMethod
-    public void init(){
-     wd = new ChromeDriver();
-     wd.manage().window().maximize();
-     wd.get("http://test70.lowcoststrip.com/");
-    }
 
     @Test
-    public void
+    public void openSite() throws InterruptedException {
+        Assert.assertTrue(isElementPresent(By.cssSelector("ion-title.hide-xs")));
+
+
+    }
 
 
 
