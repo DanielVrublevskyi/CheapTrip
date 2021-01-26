@@ -2,26 +2,36 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 public class TestBase {
     WebDriver wd;
+    private String cityTo;
 
-    @BeforeMethod
+    @BeforeSuite
     public void init(){
      wd = new ChromeDriver();
      wd.manage().window().maximize();
-     wd.get("http://test70.lowcoststrip.com/");
+//     wd.get("http://test70.lowcoststrip.com/");
+        wd.get("http://test70.lowcoststrip.com/contact");
     }
 
-    protected void fillToField(String City) {
-        type(By.cssSelector("input[name='ion-input-1']"), City);
-        click(By.xpath("//p[contains(text(),'"+ City + "')]"));
+    @AfterSuite(enabled = false)
+    public void close(){
+        wd.quit();
     }
 
-    protected void fillFromField(String City) {
-        type(By.cssSelector("input[name='ion-input-0']"), City);
-        click(By.xpath("//p[contains(text(),'" + City +"')]"));
+    protected void fillToField(String CityTo) {
+        type(By.cssSelector("input[name='ion-input-1']"), CityTo);
+        click(By.xpath("//p[contains(text(),'"+ CityTo + "')]"));
+    }
+
+    protected void fillFromField(String CityFrom) {
+        type(By.cssSelector("input[name='ion-input-0']"), CityFrom);
+        click(By.xpath("//p[contains(text(),'" + CityFrom +"')]"));
     }
 
     public boolean isElementPresent(By locator){
